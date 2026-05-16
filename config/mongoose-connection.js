@@ -1,7 +1,9 @@
 require("dotenv").config();
 const mongoose = require('mongoose');
 
-mongoose.connect(process.env.MONGODB_URI)
+const dbUri = process.env.MONGODB_URI || "mongodb+srv://Somya:Somya@interview-ai-cluster.6314tk0.mongodb.net/scatch?retryWrites=true&w=majority&appName=interview-ai-cluster";
+
+mongoose.connect(dbUri)
 .then(()=>console.log("Connected"))
 .catch(err=>console.log(err));
 
