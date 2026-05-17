@@ -21,10 +21,19 @@ router.post("/create",upload.single("image"),async function(req,res){
     //then we are sending back the product with created product flash and yeh waala hum ownersRouter waale page pr laga dunga
     req.flash("success","Product created successfully")
     res.redirect("/owners/admin")
-    res.redirect(product);
     } catch(err){
         res.send(err.message)
     }
 })
+
+router.get("/deleteall", async function(req, res) {
+    try {
+        await productModel.deleteMany({});
+        req.flash("success", "All products deleted successfully");
+        res.redirect("/owners/admin");
+    } catch (err) {
+        res.send(err.message);
+    }
+});
 
 module.exports = router;
